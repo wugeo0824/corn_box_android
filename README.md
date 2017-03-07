@@ -6,3 +6,4 @@ RxJava
 Dagger
 MVP
 Unit/Instrumented Tests
+Firebase
