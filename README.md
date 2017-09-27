@@ -2,8 +2,6 @@
 Demo App for Android
 
 Target:
-RxJava
-Dagger
-MVP
-Unit/Instrumented Tests
-Firebase
+Litho
+MVVM/MVP ?
+DataBinding
