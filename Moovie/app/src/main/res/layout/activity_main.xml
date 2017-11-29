@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="crepe.dan.moovie.ui.main.MainActivity">
+    tools:context=".home.MainActivity">
 
     <FrameLayout
         android:id="@+id/flFrame"

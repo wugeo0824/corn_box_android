@@ -11,13 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name="crepe.dan.moovie.home.MainActivity"
             android:label="@string/app_name">
 
         </activity>
 
         <activity
-            android:name="crepe.dan.moovie.ui.splash.SplashActivity"
+            android:name="crepe.dan.moovie.splash.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
