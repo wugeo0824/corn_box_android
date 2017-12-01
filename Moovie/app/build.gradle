@@ -76,14 +76,15 @@ dependencies {
     implementation "com.android.support:design:$rootProject.ext.supportLibraryVersion"
     implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintLayoutVersion"
 
-    kapt "com.android.databinding:compiler:3.0.0-rc2"
+    kapt "com.android.databinding:compiler:3.1.0-alpha04"
+
+    implementation "com.github.bumptech.glide:glide:4.2.0"
 
     implementation "com.google.dagger:dagger-android:${versions.dagger}"
     implementation "com.google.dagger:dagger-android-support:${versions.dagger}"
     kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
     kapt "com.google.dagger:dagger-android-processor:${versions.dagger}"
 
-    //compile 'io.reactivex.rxjava2:rxkotlin:x.y.z'
     implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
     implementation "io.reactivex.rxjava2:rxandroid:2.0.1"
 
