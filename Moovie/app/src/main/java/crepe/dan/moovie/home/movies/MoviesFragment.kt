@@ -1,7 +1,6 @@
-package crepe.dan.moovie.dashboard
+package crepe.dan.moovie.home.movies
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,24 +9,24 @@ import android.widget.Toast
 import com.example.moviesource.MovieRepository
 import com.example.moviesource.entities.Movie
 import crepe.dan.moovie.R
-import crepe.dan.moovie.dashboard.list.MovieAdapter
+import crepe.dan.moovie.home.movies.list.MovieAdapter
 import dagger.android.support.DaggerFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import kotlinx.android.synthetic.main.fragment_dashboard.*
+import kotlinx.android.synthetic.main.fragment_movies.*
 import javax.inject.Inject
 
-class DashboardFragment : DaggerFragment() {
+class MoviesFragment : DaggerFragment() {
 
     private val movieList = ArrayList<Movie>()
     private val adapter = MovieAdapter(movieList)
-    private var getMovies:Disposable? = null
+    private var getMovies: Disposable? = null
 
     @Inject
-    lateinit var movieRepo : MovieRepository
+    lateinit var movieRepo: MovieRepository
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_dashboard, container, false)
+        return inflater.inflate(R.layout.fragment_movies, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,10 +40,10 @@ class DashboardFragment : DaggerFragment() {
         getMovies = movieRepo.getMovies()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        {results ->
+                        { results ->
                             onMoviesFetched(results)
                         },
-                        {error ->
+                        { error ->
                             Log.e("WOW", error.message)
                             Toast.makeText(context, "Error:  " + error.localizedMessage, Toast.LENGTH_SHORT).show()
                         }

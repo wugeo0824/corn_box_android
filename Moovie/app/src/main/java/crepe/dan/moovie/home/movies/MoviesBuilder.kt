@@ -1,4 +1,4 @@
-package crepe.dan.moovie.dashboard
+package crepe.dan.moovie.home.movies
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -8,8 +8,8 @@ import dagger.android.ContributesAndroidInjector
  */
 
 @Module
-internal abstract class DashboardBuilder {
+internal abstract class MoviesBuilder {
 
     @ContributesAndroidInjector
-    internal abstract fun dashboardFragment(): DashboardFragment
+    internal abstract fun moviesFragment(): MoviesFragment
 }

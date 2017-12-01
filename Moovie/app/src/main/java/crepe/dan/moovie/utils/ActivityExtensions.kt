@@ -7,14 +7,14 @@ import android.support.v7.app.AppCompatActivity
 
 
 fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int) {
-    supportFragmentManager.transact{
+    supportFragmentManager.transact {
         add(frameId, fragment)
     }
 }
 
 
 fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int) {
-    supportFragmentManager.transact{
+    supportFragmentManager.transact {
         replace(frameId, fragment)
     }
 }
@@ -23,7 +23,11 @@ fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int) {
  * Runs a FragmentTransaction, then calls commit().
  */
 private inline fun FragmentManager.transact(action: FragmentTransaction.() -> Unit) {
-    beginTransaction().apply {
-        action()
-    }.commit()
+    beginTransaction()
+            .setReorderingAllowed(true)
+            .apply {
+                action()
+            }
+            .addToBackStack(null)
+            .commit()
 }
