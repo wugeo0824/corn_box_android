@@ -3,7 +3,7 @@ package crepe.dan.moovie.splash
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import crepe.dan.moovie.home.MainActivity
+import crepe.dan.moovie.home.HomeActivity
 
 class SplashActivity: AppCompatActivity() {
 
@@ -13,7 +13,7 @@ class SplashActivity: AppCompatActivity() {
     }
 
     private fun startMainActivity() {
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
         finish()
     }

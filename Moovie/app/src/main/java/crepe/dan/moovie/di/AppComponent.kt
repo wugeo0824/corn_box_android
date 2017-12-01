@@ -1,27 +1,22 @@
 package crepe.dan.moovie.di
 
-import android.app.Application
+import com.example.moviesource.MovieSourceModule
 import crepe.dan.moovie.MoovieApplication
-import dagger.BindsInstance
+import crepe.dan.moovie.home.HomeBuilder
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
+import javax.inject.Singleton
 
+@Singleton
 @Component(modules = [
-        AndroidSupportInjectionModule::class,
-        AppModule::class,
-        ActivityBuilder::class
-        //MovieSourceModule::class
+    AndroidSupportInjectionModule::class,
+    AppModule::class,
+    HomeBuilder::class,
+    MovieSourceModule::class
 ])
 interface AppComponent : AndroidInjector<MoovieApplication> {
 
     @Component.Builder
-    interface Builder {
-        @BindsInstance
-        fun application(application: Application): Builder
-
-        fun build(): AppComponent
-    }
-
-    override fun inject(app: MoovieApplication)
+    abstract class Builder : AndroidInjector.Builder<MoovieApplication>()
 }

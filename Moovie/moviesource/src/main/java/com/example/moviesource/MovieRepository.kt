@@ -17,7 +17,8 @@ class MovieRepository(private var cache: MovieLocalCache, private var remote: Mo
     }
 
     override fun getMovies(): Single<List<Movie>> {
-        return Single.concat(cache.getMovies(), remote.getMovies()).firstOrError()
+       // return Single.concat(cache.getMovies(), remote.getMovies()).firstOrError()
+        return remote.getMovies()
     }
 
 }

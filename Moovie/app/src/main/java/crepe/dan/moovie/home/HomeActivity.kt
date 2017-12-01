@@ -7,9 +7,10 @@ import android.support.v7.app.AppCompatActivity
 import crepe.dan.moovie.R
 import crepe.dan.moovie.utils.replaceFragment
 import crepe.dan.moovie.dashboard.DashboardFragment
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class HomeActivity : DaggerAppCompatActivity() {
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
