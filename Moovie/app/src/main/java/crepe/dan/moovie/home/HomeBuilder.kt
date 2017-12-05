@@ -1,6 +1,6 @@
 package crepe.dan.moovie.home
 
-import crepe.dan.moovie.home.cinemas.CinemasBuilder
+import crepe.dan.moovie.home.dashboard.DashboardBuilder
 import crepe.dan.moovie.home.movies.MoviesBuilder
 import crepe.dan.moovie.home.profile.ProfileBuilder
 import dagger.Module
@@ -15,7 +15,7 @@ internal abstract class HomeBuilder {
 
     @ContributesAndroidInjector(modules = [
         HomeModule::class,
-        CinemasBuilder::class,
+        DashboardBuilder::class,
         MoviesBuilder::class,
         ProfileBuilder::class
     ])

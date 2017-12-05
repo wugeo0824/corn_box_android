@@ -1,4 +1,4 @@
-package crepe.dan.moovie.home.cinemas
+package crepe.dan.moovie.home.dashboard
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -7,8 +7,8 @@ import dagger.android.ContributesAndroidInjector
  * Created by xijun on 01/12/2017.
  */
 @Module
-internal abstract class CinemasBuilder {
+internal abstract class DashboardBuilder {
 
     @ContributesAndroidInjector
-    internal abstract fun cinemasFragment(): CinemasFragment
+    internal abstract fun cinemasFragment(): DashboardFragment
 }

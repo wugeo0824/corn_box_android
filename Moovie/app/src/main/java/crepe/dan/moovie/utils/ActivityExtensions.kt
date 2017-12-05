@@ -6,16 +6,16 @@ import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 
 
-fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int) {
+fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int, tag: String) {
     supportFragmentManager.transact {
-        add(frameId, fragment)
+        add(frameId, fragment, tag)
     }
 }
 
 
-fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int) {
+fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int, tag: String) {
     supportFragmentManager.transact {
-        replace(frameId, fragment)
+        replace(frameId, fragment, tag)
     }
 }
 
@@ -28,6 +28,5 @@ private inline fun FragmentManager.transact(action: FragmentTransaction.() -> Un
             .apply {
                 action()
             }
-            .addToBackStack(null)
             .commit()
 }

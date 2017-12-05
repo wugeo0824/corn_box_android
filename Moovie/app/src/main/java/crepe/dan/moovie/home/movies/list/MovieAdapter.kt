@@ -1,4 +1,4 @@
-package crepe.dan.moovie.home.dashboard.list
+package crepe.dan.moovie.home.movies.list
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

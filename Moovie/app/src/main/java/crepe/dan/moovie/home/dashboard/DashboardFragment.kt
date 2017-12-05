@@ -1,4 +1,4 @@
-package crepe.dan.moovie.home.cinemas
+package crepe.dan.moovie.home.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,9 +11,9 @@ import dagger.android.support.DaggerFragment
  * Created by xijun on 01/12/2017.
  */
 
-class CinemasFragment: DaggerFragment() {
+class DashboardFragment : DaggerFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_cinemas, container, false)
+        return inflater.inflate(R.layout.fragment_dashboard, container, false)
     }
 }

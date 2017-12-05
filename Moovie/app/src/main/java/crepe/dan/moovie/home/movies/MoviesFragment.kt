@@ -36,18 +36,20 @@ class MoviesFragment : DaggerFragment() {
 
     override fun onStart() {
         super.onStart()
-        Toast.makeText(context, "Started loading", Toast.LENGTH_SHORT).show()
-        getMovies = movieRepo.getMovies()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { results ->
-                            onMoviesFetched(results)
-                        },
-                        { error ->
-                            Log.e("WOW", error.message)
-                            Toast.makeText(context, "Error:  " + error.localizedMessage, Toast.LENGTH_SHORT).show()
-                        }
-                )
+        if (movieList.isEmpty()){
+            Toast.makeText(context, "Started loading", Toast.LENGTH_SHORT).show()
+            getMovies = movieRepo.getMovies()
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            { results ->
+                                onMoviesFetched(results)
+                            },
+                            { error ->
+                                Log.e("WOW", error.message)
+                                Toast.makeText(context, "Error:  " + error.localizedMessage, Toast.LENGTH_SHORT).show()
+                            }
+                    )
+        }
     }
 
     override fun onStop() {
