@@ -3,12 +3,11 @@ package crepe.dan.moovie.home
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
-import android.widget.Toast
 import crepe.dan.moovie.R
 import crepe.dan.moovie.home.dashboard.DashboardFragment
 import crepe.dan.moovie.home.movies.MoviesFragment
 import crepe.dan.moovie.home.profile.ProfileFragment
-import crepe.dan.moovie.utils.replaceFragment
+import crepe.dan.moovie.extensions.replaceFragment
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 

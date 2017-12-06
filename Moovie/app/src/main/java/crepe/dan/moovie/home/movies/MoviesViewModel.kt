@@ -5,6 +5,8 @@ import com.example.base.RxSchedulers
 import com.example.moviesource.MovieRepository
 import com.example.moviesource.entities.Movie
 import crepe.dan.moovie.utils.RxAwareViewModel
+import crepe.dan.moovie.view.ViewState
+import crepe.dan.moovie.view.ViewStateResource
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -13,26 +15,32 @@ class MoviesViewModel @Inject constructor(
         private val movieRepository: MovieRepository
 ) : RxAwareViewModel() {
 
-    val liveMovieList = MutableLiveData<List<Movie>>()
+    val moviesLiveData = MutableLiveData<List<Movie>>()
+    val viewStateLiveData = MutableLiveData<ViewStateResource>()
 
     init {
         loadMovies()
     }
 
-    private fun loadMovies() {
+    fun loadMovies() {
         val movieDisposable = movieRepository
                 .getMovies()
                 .observeOn(schedulers.ui)
+                .doOnSubscribe({ viewStateLiveData.value = ViewStateResource(ViewState.LOADING) })
                 .subscribe(this::onSuccess, this::onError)
 
         disposeWhenClear(movieDisposable)
     }
 
     private fun onSuccess(result: List<Movie>) {
-        liveMovieList.value = result
+        viewStateLiveData.value =
+                ViewStateResource(if (result.isEmpty()) ViewState.EMPTY else ViewState.SUCCESS)
+
+        moviesLiveData.value = result
     }
 
     private fun onError(t: Throwable) {
         Timber.e(t)
+        viewStateLiveData.value = ViewStateResource(ViewState.ERROR, t.localizedMessage)
     }
 }
