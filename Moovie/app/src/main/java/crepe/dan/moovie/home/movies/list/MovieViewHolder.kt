@@ -1,11 +1,12 @@
 package crepe.dan.moovie.home.movies.list
 
-import android.support.v7.widget.RecyclerView
-import android.view.View
+import android.view.ViewGroup
 import com.example.moviesource.entities.Movie
+import crepe.dan.moovie.R
+import crepe.dan.moovie.view.KViewHolder
 import kotlinx.android.synthetic.main.item_movie.view.*
 
-class MovieViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+class MovieViewHolder(parent: ViewGroup) : KViewHolder(parent, R.layout.item_movie) {
 
     fun setItem(movie: Movie) {
         itemView.tvName.text = movie.name
