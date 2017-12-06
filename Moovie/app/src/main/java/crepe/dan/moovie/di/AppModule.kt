@@ -4,6 +4,8 @@ import android.app.Application
 import android.content.Context
 import com.example.base.RxSchedulers
 import crepe.dan.moovie.MoovieApplication
+import crepe.dan.moovie.appmanager.AppManagers
+import crepe.dan.moovie.appmanager.TimberManager
 import dagger.Module
 import dagger.Provides
 import java.io.File
@@ -30,5 +32,12 @@ class AppModule {
     @Provides
     fun provideRxSchedulers(): RxSchedulers {
         return RxSchedulers()
+    }
+
+    @Provides
+    fun provideAppManagers(
+            timberManager: TimberManager
+    ): AppManagers {
+        return AppManagers(timberManager)
     }
 }
