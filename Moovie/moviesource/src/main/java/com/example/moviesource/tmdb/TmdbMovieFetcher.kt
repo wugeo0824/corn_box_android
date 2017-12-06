@@ -32,7 +32,8 @@ class TmdbMovieFetcher @Inject constructor(
 
                     if (resultsPage.results != null) {
                         resultsPage.results.forEach { it ->
-                            val movie = Movie(it.id, it.title, it.overview)
+                            val posterUrl = "https://image.tmdb.org/t/p/w342" + it.poster_path
+                            val movie = Movie(it.id, it.title, it.overview, posterUrl)
                             converted.add(movie)
                         }
                     }

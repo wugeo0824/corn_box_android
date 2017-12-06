@@ -51,6 +51,11 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     // Remove mockRelease as it's not needed.
     android.variantFilter { variant ->
         if (variant.buildType.name == 'release'
@@ -75,15 +80,18 @@ dependencies {
 
     implementation "com.android.support:appcompat-v7:${versions.supportLibrary}"
     implementation "com.android.support:design:${versions.supportLibrary}"
-    implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintLayoutVersion"
+    implementation "com.android.support.constraint:constraint-layout:${versions.constraintLayout}"
+//    implementation "com.android.support:cardview-v7:${versions.supportLibrary}"
 
     implementation "android.arch.lifecycle:extensions:${versions.archComp}"
+    kapt "android.arch.lifecycle:compiler:${versions.archComp}"
 
-    kapt "com.android.databinding:compiler:3.1.0-alpha04"
+//    kapt "com.android.databinding:compiler:3.1.0-alpha04"
 
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-    implementation "com.github.bumptech.glide:glide:4.2.0"
+    implementation "com.github.bumptech.glide:glide:4.4.0"
+    kapt 'com.github.bumptech.glide:compiler:4.4.0'
 
     implementation "com.google.dagger:dagger-android:${versions.dagger}"
     implementation "com.google.dagger:dagger-android-support:${versions.dagger}"

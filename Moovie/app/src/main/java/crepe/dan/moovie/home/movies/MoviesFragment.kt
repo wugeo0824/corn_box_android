@@ -4,6 +4,9 @@ import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,7 +34,10 @@ class MoviesFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val layoutManager = LinearLayoutManager(activity)
+        rvMovies.layoutManager = layoutManager
         rvMovies.adapter = adapter
+        rvMovies.addItemDecoration(DividerItemDecoration(rvMovies.context, layoutManager.orientation))
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MoviesViewModel::class.java)
 
