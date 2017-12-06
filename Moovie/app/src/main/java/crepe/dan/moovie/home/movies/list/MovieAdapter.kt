@@ -6,7 +6,15 @@ import android.view.ViewGroup
 import com.example.moviesource.entities.Movie
 import crepe.dan.moovie.R
 
-class MovieAdapter(private var items: List<Movie>) : RecyclerView.Adapter<MovieViewHolder>() {
+class MovieAdapter: RecyclerView.Adapter<MovieViewHolder>() {
+
+    private val items = ArrayList<Movie>()
+
+    fun setItems(movies: List<Movie>) {
+        items.clear()
+        items.addAll(movies)
+        notifyDataSetChanged()
+    }
 
     override fun getItemCount(): Int {
         return items.size
