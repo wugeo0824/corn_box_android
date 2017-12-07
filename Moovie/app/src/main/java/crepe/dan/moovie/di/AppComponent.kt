@@ -20,4 +20,5 @@ interface AppComponent : AndroidInjector<MoovieApplication> {
 
     @Component.Builder
     abstract class Builder : AndroidInjector.Builder<MoovieApplication>()
+
 }

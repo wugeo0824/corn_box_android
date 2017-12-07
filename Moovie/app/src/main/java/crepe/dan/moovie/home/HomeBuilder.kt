@@ -20,4 +20,5 @@ internal abstract class HomeBuilder {
         ProfileBuilder::class
     ])
     internal abstract fun homeActivity(): HomeActivity
+
 }

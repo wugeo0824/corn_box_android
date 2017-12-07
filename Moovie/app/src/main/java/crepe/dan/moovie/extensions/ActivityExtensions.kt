@@ -9,7 +9,8 @@ import android.support.v7.app.AppCompatActivity
 fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int, tag: String) {
     supportFragmentManager.transact {
         add(frameId, fragment, tag)
-        setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+        addToBackStack(tag)
+        setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
     }
 }
 
@@ -17,7 +18,8 @@ fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int, tag: String)
 fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int, tag: String) {
     supportFragmentManager.transact {
         replace(frameId, fragment, tag)
-        setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+        addToBackStack(tag)
+        setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
     }
 }
 

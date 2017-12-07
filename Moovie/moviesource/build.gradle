@@ -25,7 +25,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(":base")
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation "junit:junit:${versions.junit}"
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     api "com.google.dagger:dagger:${versions.dagger}"

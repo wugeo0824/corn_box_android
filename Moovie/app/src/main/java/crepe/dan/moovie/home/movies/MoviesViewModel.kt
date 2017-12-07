@@ -19,6 +19,7 @@ class MoviesViewModel @Inject constructor(
     val viewStateLiveData = MutableLiveData<ViewStateResource>()
 
     init {
+        Timber.d("MoviesViewModel has been Init")
         loadMovies()
     }
 
@@ -43,4 +44,5 @@ class MoviesViewModel @Inject constructor(
         Timber.e(t)
         viewStateLiveData.value = ViewStateResource(ViewState.ERROR, t.localizedMessage)
     }
+
 }
