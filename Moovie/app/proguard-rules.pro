@@ -42,4 +42,8 @@
 -keepnames class com.uwetrottmann.tmdb2.enumerations.** { *; }
 -keepnames class com.uwetrottmann.tmdb2.entities.** { *; }
 
-
+# PlaceHolderView
+-keepattributes *Annotation*
+-keepclassmembers class ** {
+    @com.mindorks.placeholderview.annotations.** <methods>;
+}

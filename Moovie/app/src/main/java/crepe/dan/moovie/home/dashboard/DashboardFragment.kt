@@ -3,12 +3,17 @@ package crepe.dan.moovie.home.dashboard
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.moviesource.MovieRepository
+import com.example.moviesource.entities.Movie
+import com.mindorks.placeholderview.SwipePlaceHolderView
 import crepe.dan.moovie.R
 import crepe.dan.moovie.extensions.observeK
 import dagger.android.support.DaggerFragment
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import javax.inject.Inject
 
@@ -30,13 +35,15 @@ class DashboardFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.numberLiveData.observeK(this, this::onRandomChanged)
-        btnRandomNumber.setOnClickListener({ viewModel.nextRandom() })
+        viewModel.movieLiveData.observeK(this, this::onMoviesFetched)
     }
 
-    private fun onRandomChanged(number: Int?) {
-        number?.let {
-            tvRandom.text = it.toString()
+    private fun onMoviesFetched(movieList: List<Movie>?) {
+        movieList?.let {
+            movieList.forEach({
+
+            })
         }
     }
+
 }

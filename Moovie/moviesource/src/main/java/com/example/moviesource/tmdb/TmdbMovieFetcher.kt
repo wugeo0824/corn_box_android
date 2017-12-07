@@ -44,9 +44,9 @@ class TmdbMovieFetcher @Inject constructor(
         val converted = ArrayList<Movie>()
 
         moviesResultsPage.results?.let {
-            it.forEach { popularMovie ->
-                val posterUrl = "https://image.tmdb.org/t/p/w342" + popularMovie.poster_path
-                val movie = Movie(popularMovie.id, popularMovie.title, popularMovie.overview, posterUrl)
+            it.forEach { result ->
+                val posterUrl = "https://image.tmdb.org/t/p/w342" + result.poster_path
+                val movie = Movie(result.id, result.title, result.vote_average, result.overview, posterUrl)
                 converted.add(movie)
             }
         }

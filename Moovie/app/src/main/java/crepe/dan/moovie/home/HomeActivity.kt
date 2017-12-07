@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import crepe.dan.moovie.R
 import crepe.dan.moovie.extensions.replaceFragment
-import crepe.dan.moovie.home.dashboard.DashboardFragment
+import crepe.dan.moovie.home.dashboard.DashboardJFragment
 import crepe.dan.moovie.home.movies.MoviesFragment
 import crepe.dan.moovie.home.profile.ProfileFragment
 import dagger.android.support.DaggerAppCompatActivity
@@ -58,7 +58,7 @@ class HomeActivity : DaggerAppCompatActivity() {
         if (fragmentToBeReplaced == null) {
             fragmentToBeReplaced = when (nextFragment) {
                 HomeFragments.DASHBOARD -> {
-                    DashboardFragment()
+                    DashboardJFragment()
                 }
                 HomeFragments.MOVIES -> {
                     MoviesFragment()

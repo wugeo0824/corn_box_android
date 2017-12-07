@@ -14,7 +14,10 @@ import dagger.multibindings.IntoMap
 internal abstract class DashboardBuilder {
 
     @ContributesAndroidInjector
-    internal abstract fun cinemasFragment(): DashboardFragment
+    internal abstract fun dashboardFragment(): DashboardFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun dashboardJFragment(): DashboardJFragment
 
     @Binds
     @IntoMap

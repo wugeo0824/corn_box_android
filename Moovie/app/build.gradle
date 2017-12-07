@@ -81,12 +81,12 @@ dependencies {
     implementation "com.android.support:appcompat-v7:${versions.supportLibrary}"
     implementation "com.android.support:design:${versions.supportLibrary}"
     implementation "com.android.support.constraint:constraint-layout:${versions.constraintLayout}"
-//    implementation "com.android.support:cardview-v7:${versions.supportLibrary}"
+    implementation "com.android.support:cardview-v7:${versions.supportLibrary}"
+
+    implementation 'com.mindorks:placeholderview:0.7.2'
 
     implementation "android.arch.lifecycle:extensions:${versions.archComp}"
     kapt "android.arch.lifecycle:compiler:${versions.archComp}"
-
-//    kapt "com.android.databinding:compiler:3.1.0-alpha04"
 
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 

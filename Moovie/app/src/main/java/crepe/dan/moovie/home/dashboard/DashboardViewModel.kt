@@ -1,18 +1,36 @@
 package crepe.dan.moovie.home.dashboard
 
 import android.arch.lifecycle.MutableLiveData
+import com.example.moviesource.MovieRepository
+import com.example.moviesource.entities.Movie
 import crepe.dan.moovie.utils.RxAwareViewModel
-import java.util.*
+import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
-class DashboardViewModel @Inject constructor():RxAwareViewModel() {
+class DashboardViewModel @Inject constructor(
+        private val movieRepo: MovieRepository
+) : RxAwareViewModel() {
 
-    var numberLiveData = MutableLiveData<Int>()
+    val movieLiveData = MutableLiveData<List<Movie>>()
 
-    private val random = Random()
-
-    fun nextRandom() {
-        numberLiveData.value = random.nextInt(100)
+    init {
+        discoverMovies()
     }
 
+    private fun discoverMovies() {
+        val discoverDisposable = movieRepo
+                .dicoverMovies()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::onSuccess, this::onError)
+
+        disposeWhenClear(discoverDisposable)
+    }
+
+    private fun onSuccess(movieList: List<Movie>) {
+        movieLiveData.value = movieList
+    }
+
+    private fun onError(t: Throwable) {
+
+    }
 }

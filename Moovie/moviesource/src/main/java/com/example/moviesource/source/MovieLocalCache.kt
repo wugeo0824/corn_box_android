@@ -5,7 +5,7 @@ import io.reactivex.Single
 
 class MovieLocalCache: MovieDataSource {
 
-    private val sample: Movie = Movie(1, "Blade Runner", "How can this movie last 3 hours long?", "https://image.tmdb.org/t/p/w342/vlc95gl3PtrjxSEuM8RhTtSm2xU.jpg")
+    private val sample: Movie = Movie(1, "Blade Runner", 7.2,"How can this movie last 3 hours long?", "https://image.tmdb.org/t/p/w342/vlc95gl3PtrjxSEuM8RhTtSm2xU.jpg")
 
     override fun getMovie(movieID: String): Single<Movie> {
         return Single.just(sample)
