@@ -10,12 +10,6 @@ class MovieAdapter: RecyclerView.Adapter<MovieViewHolder>() {
 
     private val items = ArrayList<Movie>()
 
-    fun setItems(movies: List<Movie>) {
-        items.clear()
-        items.addAll(movies)
-        notifyDataSetChanged()
-    }
-
     override fun getItemCount(): Int {
         return items.size
     }
@@ -27,5 +21,11 @@ class MovieAdapter: RecyclerView.Adapter<MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         return MovieViewHolder(parent)
+    }
+
+    fun setItems(movies: List<Movie>) {
+        items.clear()
+        items.addAll(movies)
+        notifyDataSetChanged()
     }
 }

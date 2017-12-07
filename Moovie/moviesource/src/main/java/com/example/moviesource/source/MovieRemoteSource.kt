@@ -15,4 +15,7 @@ class MovieRemoteSource @Inject constructor(private val tmdbMovieFetcher: TmdbMo
         return tmdbMovieFetcher.getPopularMovies(1)
     }
 
+    fun discoverMovies(): Single<List<Movie>> {
+        return tmdbMovieFetcher.discover(1)
+    }
 }
