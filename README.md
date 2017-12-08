@@ -2,7 +2,7 @@
 Android App for randomly selecting a MOVIE for your lovely Friday Nights
 **(Work in Progress)**
 
-## Language/Libraries You Can Find Here:
+## Good Stuff You Can Find Here:
  * Mostly written in Kotlin
  * Tries Clean Architecture
  * Uses MVVM
