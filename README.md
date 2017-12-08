@@ -1,4 +1,5 @@
-# Moovie (Work in Progress)
+# Moovie 
+### (Work in Progress)
 Android App for randomly selecting a MOVIE for your lovely Friday Nights
 
 ---
