@@ -1,9 +1,9 @@
 # corn_box_android
-Demo App in Android
+Android App for randomly selecting a MOVIE for your lovely Friday Nights
 
 ---
 
-### Language/Libraries you can find here:
+### Language/Libraries You Can Find Here:
 1. Kotlin
 2. Clean Architecture
 3. MVVM
