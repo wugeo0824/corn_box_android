@@ -1,10 +1,11 @@
 # corn_box_android
-Demo App for Android
+Demo App in Android
 
 Target:
-Litho
-MVVM/MVP ?
-DataBinding
+Kotlin
+Clean Architecture
+MVVM
+Android Architechture Components (Room, ViewModel, LiveData)
 
 
 TODO:
