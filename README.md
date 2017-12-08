@@ -3,7 +3,7 @@ Demo App in Android
 
 ---
 
-### Target:
+### Language/Libraries you can find here:
 1. Kotlin
 2. Clean Architecture
 3. MVVM
