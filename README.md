@@ -2,10 +2,10 @@
 Demo App in Android
 
 Target:
-Kotlin
-Clean Architecture
-MVVM
-Android Architechture Components (Room, ViewModel, LiveData)
+**1. Kotlin
+**2. Clean Architecture
+**3. MVVM
+**4. Android Architechture Components (Room, ViewModel, LiveData)
 
 
 TODO:
