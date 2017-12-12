@@ -1,9 +1,6 @@
 package com.example.moviesource.daos
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.Query
-import android.arch.persistence.room.Update
+import android.arch.persistence.room.*
 import com.example.moviesource.entities.Movie
 import io.reactivex.Single
 import timber.log.Timber
@@ -20,7 +17,13 @@ abstract class MovieDao {
     @Query("SELECT * FROM movies WHERE tmdb_id = :id")
     abstract fun getMovieWithTmdbIdSync(id: Int): Movie?
 
-    @Insert
+    @Query("SELECT * FROM movies WHERE id = :id")
+    abstract fun getMovieWithId(id: Long): Single<Movie>
+
+    @Query("SELECT * FROM movies WHERE id = :id")
+    abstract fun getMovieWithIdSync(id: Long): Movie?
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     protected abstract fun insertMovie(movie: Movie): Long
 
     @Update

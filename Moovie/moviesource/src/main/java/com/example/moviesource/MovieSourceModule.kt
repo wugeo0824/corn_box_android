@@ -3,6 +3,7 @@ package com.example.moviesource
 import android.arch.persistence.room.Room
 import android.content.Context
 import android.os.Debug
+import com.example.base.RxSchedulers
 import com.example.moviesource.daos.BookmarkedDao
 import com.example.moviesource.daos.MovieDao
 import com.example.moviesource.source.MovieLocalCache
@@ -76,4 +77,11 @@ class MovieSourceModule {
     fun provideMovieRepository(local: MovieLocalCache, remote: MovieRemoteSource): MovieRepository {
         return MovieRepository(local, remote)
     }
+
+    @Singleton
+    @Provides
+    fun provideBookmarkReporsitory(
+            bookmarkedDao: BookmarkedDao,
+            movieDao: MovieDao,
+            schedulers: RxSchedulers): BookmarkRepository = BookmarkRepository(bookmarkedDao, movieDao, schedulers)
 }

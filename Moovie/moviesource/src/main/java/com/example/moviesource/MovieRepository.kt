@@ -7,7 +7,7 @@ import io.reactivex.Single
 
 class MovieRepository(private var cache: MovieLocalCache, private var remote: MovieRemoteSource) {
 
-    fun getMovie(tmdbId: Int): Single<Movie> {
+    fun getMovieWithTmdbId(tmdbId: Int): Single<Movie> {
         return cache.getMovie(tmdbId).onErrorResumeNext { remote.getMovie(tmdbId) }
     }
 

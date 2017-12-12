@@ -72,7 +72,7 @@ public class DashboardJFragment extends DaggerFragment {
             swipePlaceHolderView.removeAllViews();
 
             for (Movie item : movies) {
-                SwipeMovieCardView swipeMovieCardView = new SwipeMovieCardView(item);
+                SwipeMovieCardView swipeMovieCardView = new SwipeMovieCardView(item, dashboardViewModel);
                 swipePlaceHolderView.addView(swipeMovieCardView);
             }
         }

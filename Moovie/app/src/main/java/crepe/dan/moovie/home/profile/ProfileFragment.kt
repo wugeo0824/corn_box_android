@@ -1,19 +1,74 @@
 package crepe.dan.moovie.home.profile
 
+import android.arch.lifecycle.ViewModelProvider
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.design.widget.Snackbar
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.moviesource.entities.Movie
 import crepe.dan.moovie.R
+import crepe.dan.moovie.extensions.observeK
+import crepe.dan.moovie.home.movies.list.MovieAdapter
+import crepe.dan.moovie.view.ViewState
+import crepe.dan.moovie.view.ViewStateResource
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.fragment_profile.*
+import javax.inject.Inject
 
-/**
- * Created by xijun on 01/12/2017.
- */
-class ProfileFragment: DaggerFragment() {
+class ProfileFragment : DaggerFragment() {
+
+    private val adapter = MovieAdapter()
+
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    private lateinit var viewModel: ProfileViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val layoutManager = LinearLayoutManager(activity)
+        rvBookmarks.layoutManager = layoutManager
+        rvBookmarks.adapter = adapter
+        rvBookmarks.addItemDecoration(DividerItemDecoration(rvBookmarks.context, layoutManager.orientation))
+
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(ProfileViewModel::class.java)
+
+        viewModel.bookmarkLiveData.observeK(this, this::onMoviesFetched)
+        viewModel.viewStateLiveData.observeK(this, this::onViewStateChanged)
+
+        srlProfile.setOnRefreshListener(viewModel::loadBookmarks)
+    }
+
+    private fun onMoviesFetched(movies: List<Movie>?) {
+        movies?.let {
+            adapter.setItems(movies)
+        }
+    }
+
+    private fun onViewStateChanged(viewStateResource: ViewStateResource?) {
+        when (viewStateResource?.state) {
+            ViewState.LOADING -> {
+                srlProfile.isRefreshing = true
+            }
+            ViewState.SUCCESS -> {
+                srlProfile.isRefreshing = false
+            }
+            ViewState.ERROR -> {
+                srlProfile.isRefreshing = false
+                Snackbar.make(cnlProfile, viewStateResource.message ?: getString(R.string.message_unknown_error), Snackbar.LENGTH_SHORT).show()
+            }
+            ViewState.EMPTY -> {
+                srlProfile.isRefreshing = false
+                Snackbar.make(cnlProfile, getString(R.string.message_empty_content), Snackbar.LENGTH_LONG)
+                        .setAction(R.string.button_text_dismiss, { }).show()
+            }
+        }
+    }
 }

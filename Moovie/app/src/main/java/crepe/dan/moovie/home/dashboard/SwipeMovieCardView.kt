@@ -18,7 +18,8 @@ import timber.log.Timber
 
 @Layout(R.layout.item_movie_swipe_card)
 class SwipeMovieCardView constructor(
-        private val movie: Movie
+        private val movie: Movie,
+        private val dashboardViewModel: DashboardViewModel
 ) {
 
     @View(R.id.ivCardPoster)
@@ -50,6 +51,7 @@ class SwipeMovieCardView constructor(
     @SwipeIn
     private fun onSwipeIn() {
         Timber.d("onSwipedIn")
+        dashboardViewModel.saveToBookmark(movie)
     }
 
     @SwipeInState
