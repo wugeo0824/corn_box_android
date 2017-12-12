@@ -5,7 +5,6 @@ import com.example.moviesource.MovieRepository
 import com.example.moviesource.entities.Movie
 import crepe.dan.moovie.utils.RxAwareViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
-import timber.log.Timber
 import javax.inject.Inject
 
 class DashboardViewModel @Inject constructor(
@@ -27,7 +26,7 @@ class DashboardViewModel @Inject constructor(
 
     private fun discoverMovies() {
         val discoverDisposable = movieRepo
-                .dicoverMovies()
+                .discoverMovies()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::onSuccess, this::onError)
 

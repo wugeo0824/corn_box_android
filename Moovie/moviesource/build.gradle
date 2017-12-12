@@ -6,8 +6,6 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-
-
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
 
@@ -34,6 +32,10 @@ dependencies {
     api 'com.squareup.okhttp3:logging-interceptor:3.9.1'
 
     api "com.uwetrottmann.tmdb2:tmdb-java:1.8.1"
+
+    implementation "android.arch.persistence.room:runtime:${versions.archComp}"
+    implementation "android.arch.persistence.room:rxjava2:${versions.archComp}"
+    kapt "android.arch.persistence.room:compiler:${versions.archComp}"
 }
 
 repositories {

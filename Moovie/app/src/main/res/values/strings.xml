@@ -2,7 +2,7 @@
     <string name="app_name">Moovie</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_movies">Movies</string>
-    <string name="title_profile">Profile</string>
+    <string name="title_profile">To Watch</string>
 
     <string name="button_text_dismiss">Dismiss</string>
     <string name="button_text_click_me">Click Me</string>

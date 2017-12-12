@@ -33,7 +33,7 @@ class SwipeMovieCardView constructor(
     @Resolve
     private fun onResolved() {
         ivCardPoster.loadImageFromUrl(movie.posterUrl)
-        tvCardName.text = movie.name
+        tvCardName.text = movie.title
         tvCardScore.text = "Score: ${movie.averageVote}"
     }
 

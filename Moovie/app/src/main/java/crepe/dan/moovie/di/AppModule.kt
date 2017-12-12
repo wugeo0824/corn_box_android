@@ -1,6 +1,5 @@
 package crepe.dan.moovie.di
 
-import android.app.Application
 import android.content.Context
 import com.example.base.RxSchedulers
 import crepe.dan.moovie.MoovieApplication
@@ -17,7 +16,7 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideContext(application: Application): Context {
+    fun provideContext(application: MoovieApplication): Context {
         return application.applicationContext
     }
 

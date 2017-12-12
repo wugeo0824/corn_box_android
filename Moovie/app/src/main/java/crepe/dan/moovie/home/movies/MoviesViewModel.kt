@@ -25,8 +25,9 @@ class MoviesViewModel @Inject constructor(
     fun loadMovies() {
         val movieDisposable = movieRepository
                 .getMovies()
-                .observeOn(schedulers.ui)
+                .subscribeOn(schedulers.data)
                 .doOnSubscribe({ viewStateLiveData.value = ViewStateResource(ViewState.LOADING) })
+                .observeOn(schedulers.ui)
                 .subscribe(this::onSuccess, this::onError)
 
         disposeWhenClear(movieDisposable)

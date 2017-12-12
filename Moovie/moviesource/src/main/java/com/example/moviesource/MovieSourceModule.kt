@@ -1,5 +1,10 @@
 package com.example.moviesource
 
+import android.arch.persistence.room.Room
+import android.content.Context
+import android.os.Debug
+import com.example.moviesource.daos.BookmarkedDao
+import com.example.moviesource.daos.MovieDao
 import com.example.moviesource.source.MovieLocalCache
 import com.example.moviesource.source.MovieRemoteSource
 import com.example.moviesource.tmdb.TmdbMovieFetcher
@@ -13,14 +18,27 @@ import java.io.File
 import javax.inject.Named
 import javax.inject.Singleton
 
-/**
- * Created by xijun on 21/11/2017.
- */
-
 private const val MAX_CACHE_SIZE_IN_MB: Long = 10 * 1024 * 1024 //10mb
 
 @Module
 class MovieSourceModule {
+
+    @Singleton
+    @Provides
+    fun provideDatabase(context: Context): MovieDatabase {
+        val builder = Room.databaseBuilder(context, MovieDatabase::class.java, "movies_database.db")
+                .fallbackToDestructiveMigration()
+        if (Debug.isDebuggerConnected()) {
+            builder.allowMainThreadQueries()
+        }
+        return builder.build()
+    }
+
+    @Provides
+    fun provideMovieDao(movieDatabase: MovieDatabase): MovieDao = movieDatabase.movieDao()
+
+    @Provides
+    fun provideBookmarkedDao(movieDatabase: MovieDatabase): BookmarkedDao = movieDatabase.bookmarkedDao()
 
     @Singleton
     @Provides
@@ -47,7 +65,7 @@ class MovieSourceModule {
 
     @Singleton
     @Provides
-    fun provideLocalCache(): MovieLocalCache = MovieLocalCache()
+    fun provideLocalCache(movieDao: MovieDao): MovieLocalCache = MovieLocalCache(movieDao)
 
     @Singleton
     @Provides

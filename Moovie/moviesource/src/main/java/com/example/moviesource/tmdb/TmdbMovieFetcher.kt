@@ -3,6 +3,7 @@ package com.example.moviesource.tmdb
 import com.example.base.RetryAfterTimeoutWithDelay
 import com.example.base.RxSchedulers
 import com.example.base.extensions.toRxSingle
+import com.example.moviesource.daos.MovieDao
 import com.example.moviesource.entities.Movie
 import com.uwetrottmann.tmdb2.Tmdb
 import com.uwetrottmann.tmdb2.entities.MovieResultsPage
@@ -16,7 +17,8 @@ import javax.inject.Singleton
 @Singleton
 class TmdbMovieFetcher @Inject constructor(
         private val tmdb: Tmdb,
-        private val schedulers: RxSchedulers
+        private val schedulers: RxSchedulers,
+        private val movieDao: MovieDao
 ) {
 
     fun discover(page: Int): Single<List<Movie>> {
@@ -43,11 +45,18 @@ class TmdbMovieFetcher @Inject constructor(
     private fun mapToMovieEntity(moviesResultsPage: MovieResultsPage): List<Movie> {
         val converted = ArrayList<Movie>()
 
+        //TODO: refactor this, right now we are saving the movie every time
         moviesResultsPage.results?.let {
-            it.forEach { result ->
-                val posterUrl = "https://image.tmdb.org/t/p/w342" + result.poster_path
-                val movie = Movie(result.id, result.title, result.vote_average, result.overview, posterUrl)
-                converted.add(movie)
+            it.forEach { tmdb ->
+                val posterUrl = "https://image.tmdb.org/t/p/w342" + tmdb.poster_path
+                val existingMovie: Movie? = movieDao.getMovieWithTmdbIdSync(tmdb.id)
+                val movie = Movie(existingMovie?.id,
+                        tmdb.id,
+                        tmdb.title,
+                        tmdb.vote_average,
+                        tmdb.overview,
+                        posterUrl)
+                converted.add(movieDao.insertOrUpdateShow(movie))
             }
         }
 
