@@ -2,6 +2,7 @@ package crepe.dan.moovie.di
 
 import com.example.moviesource.MovieSourceModule
 import crepe.dan.moovie.MoovieApplication
+import crepe.dan.moovie.detail.DetailBuilder
 import crepe.dan.moovie.home.HomeBuilder
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -14,6 +15,7 @@ import javax.inject.Singleton
     ViewModelBuilder::class,
     AppModule::class,
     HomeBuilder::class,
+    DetailBuilder::class,
     MovieSourceModule::class
 ])
 interface AppComponent : AndroidInjector<MoovieApplication> {

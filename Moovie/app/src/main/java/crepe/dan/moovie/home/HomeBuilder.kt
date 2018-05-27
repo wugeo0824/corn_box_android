@@ -14,7 +14,6 @@ import dagger.android.ContributesAndroidInjector
 internal abstract class HomeBuilder {
 
     @ContributesAndroidInjector(modules = [
-        HomeModule::class,
         DashboardBuilder::class,
         MoviesBuilder::class,
         ProfileBuilder::class

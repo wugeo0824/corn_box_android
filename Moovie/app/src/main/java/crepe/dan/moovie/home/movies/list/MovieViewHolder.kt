@@ -1,5 +1,6 @@
 package crepe.dan.moovie.home.movies.list
 
+import android.view.View
 import android.view.ViewGroup
 import com.example.moviesource.entities.Movie
 import crepe.dan.moovie.R
@@ -13,5 +14,9 @@ class MovieViewHolder(parent: ViewGroup) : KViewHolder(parent, R.layout.item_mov
         itemView.tvName.text = movie.title
         itemView.tvDescription.text = movie.description
         itemView.ivThumbNail.loadImageFromUrl(movie.posterUrl)
+    }
+
+    fun setOnClickListener(listener: View.OnClickListener) {
+        itemView.setOnClickListener(listener)
     }
 }

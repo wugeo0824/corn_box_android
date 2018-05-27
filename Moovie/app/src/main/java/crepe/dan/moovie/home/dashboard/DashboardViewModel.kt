@@ -27,7 +27,8 @@ class DashboardViewModel @Inject constructor(
     }
 
     fun saveToBookmark(movie: Movie) {
-        bookmarkRepository.addBookmark(movie)
+        bookmarkRepository
+                .addBookmark(movie)
                 .subscribe()
     }
 
